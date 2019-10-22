@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
         xmlns:properties="clr-namespace:DesktopStatusIndicator.Properties"
+        Title="Desktop Status Indicator"
         WindowStyle="None" Topmost="True"
         UseLayoutRounding="True" ResizeMode="NoResize"
         AllowsTransparency="True" Background="Transparent"
