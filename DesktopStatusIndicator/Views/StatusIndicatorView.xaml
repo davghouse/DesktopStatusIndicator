@@ -1,0 +1,46 @@
+﻿<Window x:Class="DesktopStatusIndicator.Views.StatusIndicatorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+        xmlns:properties="clr-namespace:DesktopStatusIndicator.Properties"
+        WindowStyle="None" Topmost="True"
+        UseLayoutRounding="True" ResizeMode="NoResize"
+        AllowsTransparency="True" Background="Transparent"
+        Height="{Binding Source={x:Static properties:Settings.Default}, Path=StatusIndicatorViewHeight, Mode=TwoWay}"
+        Width="{Binding Source={x:Static properties:Settings.Default}, Path=StatusIndicatorViewWidth, Mode=TwoWay}"
+        Top="{Binding Source={x:Static properties:Settings.Default}, Path=StatusIndicatorViewTop, Mode=TwoWay}"
+        Left="{Binding Source={x:Static properties:Settings.Default}, Path=StatusIndicatorViewLeft, Mode=TwoWay}">
+  <Window.Resources>
+    <Color x:Key="DarkBlueColor">#0C1E2F</Color>
+    <SolidColorBrush x:Key="DarkBlueBrush15" Color="{StaticResource DarkBlueColor}" Opacity="0.10" po:Freeze="True"/>
+
+    <!-- https://archive.education.mrsec.wisc.edu/background/LED/traffic_light/spectra.htm -->
+    <!-- https://academo.org/demos/wavelength-to-colour-relationship/ -->
+    <Color x:Key="RedTrafficLightColor">#FF0000</Color>
+    <Color x:Key="YellowTrafficLightColor">#FFCF00</Color>
+    <Color x:Key="GreenTrafficLightColor">#00FF92</Color>
+    <SolidColorBrush x:Key="RedTrafficLightBrush" Color="{StaticResource RedTrafficLightColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="YellowTrafficLightBrush" Color="{StaticResource YellowTrafficLightColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="GreenTrafficLightBrush" Color="{StaticResource GreenTrafficLightColor}" po:Freeze="True"/>
+  </Window.Resources>
+
+  <Grid MouseDown="Grid_MouseDown" Background="{StaticResource DarkBlueBrush15}">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="2"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="2"/>
+    </Grid.ColumnDefinitions>
+
+    <Ellipse Name="RedTrafficLight" Grid.Column="1" Margin="2,4,2,4" Opacity=".05"
+             Fill="{StaticResource RedTrafficLightBrush}"
+             MouseDown="TrafficLight_MouseDown_Toggle"/>
+    <Ellipse Name="YellowTrafficLight" Grid.Column="2" Margin="2,4,2,4" Opacity=".05"
+             Fill="{StaticResource YellowTrafficLightBrush}"
+             MouseDown="TrafficLight_MouseDown_Toggle"/>
+    <Ellipse Name="GreenTrafficLight" Grid.Column="3" Margin="2,4,2,4" Opacity="1"
+             Fill="{StaticResource GreenTrafficLightBrush}"
+             MouseDown="TrafficLight_MouseDown_Toggle"/>
+  </Grid>
+</Window>
